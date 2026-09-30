@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>GANGA SOLAR ENERGY</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Outfit',sans-serif;
+      scroll-behavior:smooth;
+    }
+
+body{
+  overflow-x:hidden;
+  background:#f8fafc;
+  color:#0f172a;
+}
+
+    /* VIDEO */
+    .bg-video{
+      position:fixed;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:-10;
+      filter:blur(6px) brightness(0.35) saturate(1.2);
+      transform:scale(1.1);
+    }
+
+    /* PREMIUM OVERLAY */
+    .overlay{
+      position:fixed;
+      inset:0;
+
+      background:
+      radial-gradient(circle at top right,
+      rgba(251,191,36,0.15),
+      transparent 30%),
+
+
+      radial-gradient(circle at bottom left,
+      rgba(59,130,246,0.12),
+      transparent 35%),
+
+
+      linear-gradient(
+      to bottom,
+      rgba(2,6,23,0.65),
+      rgba(2,6,23,0.75),
+      rgba(2,6,23,0.92),
+      #020617
+      );
+
+      z-index:-9;
+    }
+
+    /* LIGHTS */
+    .light{
+      position:fixed;
+      border-radius:50%;
+      filter:blur(120px);
+      z-index:-8;
+    }
+
+    .light1{
+      width:500px;
+      height:500px;
+      background:rgba(251,191,36,0.12);
+      top:-10%;
+      right:-5%;
+      animation:move1 8s infinite alternate;
+    }
+
+    .light2{
+      width:400px;
+      height:400px;
+      background:rgba(59,130,246,0.10);
+      bottom:-10%;
+      left:-5%;
+      animation:move2 10s infinite alternate;
+    }
+
+    @keyframes move1{
+      from{transform:translate(0,0);}
+      to{transform:translate(-40px,30px);}
+    }
+
+    @keyframes move2{
+      from{transform:translate(0,0);}
+      to{transform:translate(50px,-20px);}
+    }
+
+    /* GRID */
+    .grid-bg{
+      position:fixed;
+      inset:0;
+      background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+      background-size:70px 70px;
+
+      mask-image:linear-gradient(to bottom,transparent,black);
+
+      z-index:-7;
+    }
+
+    /* NAV */
+    .nav-blur{
+      backdrop-filter:blur(18px);
+      background:rgba(255,255,255,0.05);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    /* GLASS */
+    .glass{
+      background:rgba(255,255,255,0.06);
+
+      backdrop-filter:blur(18px);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      box-shadow:
+      0 10px 40px rgba(0,0,0,0.25),
+      inset 0 1px 1px rgba(255,255,255,0.06);
+
+      transition:0.45s;
+    }
+
+    .glass:hover{
+      transform:translateY(-8px);
+
+      border-color:rgba(251,191,36,0.35);
+
+      box-shadow:
+      0 25px 60px rgba(251,191,36,0.15),
+      0 0 40px rgba(251,191,36,0.08);
+    }
+
+    /* BUTTON */
+    .btn{
+      position:relative;
+      overflow:hidden;
+      transition:0.4s;
+    }
+
+    .btn::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:-120%;
+      width:100%;
+      height:100%;
+      background:linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.4),
+      transparent
+      );
+
+      transition:0.6s;
+    }
+
+    .btn:hover::before{
+      left:120%;
+    }
+
+    .btn:hover{
+      transform:translateY(-5px) scale(1.02);
+    }
+
+    /* HERO */
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      text-align:center;
+      padding:120px 20px;
+    }
+
+    .hero h1{
+      font-size:85px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:-3px;
+    }
+
+    .gradient-text{
+      background:linear-gradient(
+      90deg,
+      #fbbf24,
+      #fb923c,
+      #fde68a
+      );
+
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    /* FLOATING SOLAR */
+    .solar-panel{
+      position:absolute;
+      width:240px;
+      height:130px;
+
+      background:
+      linear-gradient(
+      135deg,
+      rgba(59,130,246,0.3),
+      rgba(15,23,42,0.9)
+      );
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      border-radius:24px;
+
+      overflow:hidden;
+
+      backdrop-filter:blur(10px);
+
+      box-shadow:
+      0 20px 50px rgba(0,0,0,0.35),
+      inset 0 0 30px rgba(255,255,255,0.04);
+    }
+
+    .solar-panel::before{
+      content:'';
+      position:absolute;
+      inset:0;
+
+      background-image:
+      linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+
+      background-size:24px 24px;
+    }
+
+    .panel1{
+      top:20%;
+      left:5%;
+      transform:rotate(-15deg);
+      animation:float1 6s infinite ease-in-out;
+    }
+
+    .panel2{
+      top:55%;
+      right:5%;
+      transform:rotate(14deg);
+      animation:float2 7s infinite ease-in-out;
+    }
+
+    @keyframes float1{
+      0%,100%{
+        transform:translateY(0) rotate(-15deg);
+      }
+      50%{
+        transform:translateY(-20px) rotate(-12deg);
+      }
+    }
+
+    @keyframes float2{
+      0%,100%{
+        transform:translateY(0) rotate(14deg);
+      }
+      50%{
+        transform:translateY(-18px) rotate(10deg);
+      }
+    }
+
+    /* SUN */
+    .sun{
+      position:absolute;
+      top:12%;
+      right:12%;
+
+      width:220px;
+      height:220px;
+
+      border-radius:50%;
+
+      background:
+      radial-gradient(circle,
+      rgba(251,191,36,0.95),
+      rgba(251,191,36,0.2),
+      transparent 75%);
+
+      filter:blur(12px);
+
+      animation:sunPulse 5s infinite;
+    }
+
+    @keyframes sunPulse{
+      0%,100%{
+        transform:scale(1);
+      }
+      50%{
+        transform:scale(1.1);
+      }
+    }
+
+    /* BADGE */
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+
+      padding:12px 24px;
+
+      border-radius:999px;
+
+      background:rgba(255,255,255,0.06);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      backdrop-filter:blur(10px);
+
+      margin-bottom:35px;
+    }
+
+    /* STATS */
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+      margin-top:70px;
+    }
+
+    .stat-card{
+      padding:30px;
+      border-radius:30px;
+      text-align:center;
+    }
+
+    .stat-card h2{
+      font-size:40px;
+      color:#fbbf24;
+      font-weight:800;
+    }
+
+    /* SECTION */
+    section{
+      padding:120px 20px;
+      position:relative;
+    }
+
+    /* TITLES */
+    .section-title{
+      font-size:60px;
+      font-weight:900;
+      text-align:center;
+      margin-bottom:18px;
+      letter-spacing:-2px;
+    }
+
+    .section-sub{
+      text-align:center;
+      color:#cbd5e1;
+      margin-bottom:70px;
+      font-size:18px;
+    }
+
+    /* SYSTEM CARDS */
+    .system-card{
+      padding:40px 30px;
+      border-radius:34px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .system-card::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+      135deg,
+      rgba(251,191,36,0.08),
+      transparent
+      );
+    }
+
+    /* MARQUEE */
+    .marquee{
+      display:flex;
+      gap:30px;
+      width:max-content;
+      animation:scroll 25s linear infinite;
+    }
+
+    @keyframes scroll{
+      from{
+        transform:translateX(0);
+      }
+      to{
+        transform:translateX(-50%);
+      }
+    }
+
+    .brand{
+      min-width:220px;
+      height:120px;
+      border-radius:28px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .brand img{
+      width:140px;
+      object-fit:contain;
+      filter:brightness(1.2);
+    }
+
+    /* CONTACT */
+    .contact-box{
+      border-radius:40px;
+      padding:60px;
+      max-width:700px;
+      margin:auto;
+    }
+
+    .input{
+      width:100%;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.08);
+      color:white;
+      padding:18px 22px;
+      border-radius:20px;
+      outline:none;
+      transition:0.3s;
+    }
+
+    .input:focus{
+      border-color:#fbbf24;
+      box-shadow:0 0 20px rgba(251,191,36,0.15);
+    }
+
+    /* FOOTER */
+    footer{
+      padding:120px 20px 60px;
+      text-align:center;
+      position:relative;
+    }
+
+    .footer-glow{
+      position:absolute;
+      width:500px;
+      height:500px;
+      background:rgba(251,191,36,0.08);
+      border-radius:50%;
+      filter:blur(120px);
+      left:50%;
+      transform:translateX(-50%);
+      top:-120px;
+    }
+
+    /* MOBILE */
+    @media(max-width:768px){
+
+      .hero h1{
+        font-size:52px;
+      }
+
+      .section-title{
+        font-size:40px;
+      }
+
+      .solar-panel{
+        display:none;
+      }
+
+      .stats{
+        grid-template-columns:1fr;
+      }
+
+      .contact-box{
+        padding:35px 25px;
+      }
+
+    }
+
+
+/* =========================
+   LIGHT MODE
+========================= */
+
+body.light-mode{
+  background:#f8fafc;
+  color:#0f172a;
+}
+
+/* overlay */
+body.light-mode .overlay{
+  background:
+  radial-gradient(circle at top right,
+  rgba(251,191,36,0.20),
+  transparent 30%),
+
+  radial-gradient(circle at bottom left,
+  rgba(59,130,246,0.15),
+  transparent 35%),
+
+  linear-gradient(
+  to bottom,
+  rgba(255,255,255,0.75),
+  rgba(255,255,255,0.92),
+  #f8fafc
+  );
+}
+
+/* navbar */
+body.light-mode .nav-blur{
+  background:rgba(255,255,255,0.7);
+  border-bottom:1px solid rgba(0,0,0,0.06);
+}
+
+/* glass effect */
+body.light-mode .glass{
+  background:rgba(255,255,255,0.65);
+  border:1px solid rgba(0,0,0,0.05);
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.08),
+  inset 0 1px 1px rgba(255,255,255,0.7);
+}
+
+/* hover */
+body.light-mode .glass:hover{
+  border-color:rgba(251,191,36,0.4);
+  box-shadow:
+  0 25px 50px rgba(251,191,36,0.18);
+}
+
+/* text */
+body.light-mode .section-sub,
+body.light-mode .text-slate-300{
+  color:#475569 !important;
+}
+
+body.light-mode .text-slate-400{
+  color:#64748b !important;
+}
+
+body.light-mode .text-slate-600{
+  color:#94a3b8 !important;
+}
+
+/* inputs */
+body.light-mode .input{
+  background:rgba(255,255,255,0.8);
+  color:#0f172a;
+  border:1px solid rgba(0,0,0,0.08);
+}
+
+/* grid */
+body.light-mode .grid-bg{
+  background-image:
+  linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+}
+
+/* toggle button */
+.theme-toggle{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  border:none;
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(12px);
+
+  border:1px solid rgba(255,255,255,0.1);
+
+  transition:0.4s;
+}
+
+.theme-toggle:hover{
+  transform:rotate(180deg) scale(1.08);
+  box-shadow:0 0 25px rgba(251,191,36,0.4);
+}
+
+body.light-mode .theme-toggle{
+  background:white;
+  border:1px solid rgba(0,0,0,0.08);
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- VIDEO -->
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="assets/solar-bg.mp4" type="video/mp4">
+  </video>
+
+  <!-- OVERLAY -->
+  <div class="overlay"></div>
+
+  <!-- LIGHTS -->
+  <div class="light light1"></div>
+  <div class="light light2"></div>
+
+  <!-- GRID -->
+  <div class="grid-bg"></div>
+
+  <!-- SUN -->
+  <div class="sun"></div>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 w-full z-50 nav-blur">
+
+    <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+
+      <div class="flex items-center gap-3">
+
+        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-2xl">
+
+          <i data-lucide="sun" class="w-7 h-7 text-white"></i>
+
+        </div>
+
+        <h1 class="text-2xl font-bold tracking-tight">
+          GANGA SOLAR ENERGY
+        </h1>
+
+      </div>
+
+<div class="flex items-center gap-4">
+
+  <!-- TOGGLE BUTTON -->
+  <button id="themeToggle" class="theme-toggle">
+
+    <i data-lucide="moon" class="w-6 h-6 text-amber-400"></i>
+
+  </button>
+
+  <!-- BUTTON -->
+  <a href="#contact"
+    class="bg-gradient-to-r from-amber-400 to-orange-500 text-slate-900 px-7 py-3 rounded-full font-bold btn shadow-2xl">
+
+    Get Quote
+
+  </a>
+
+</div>
+
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <!-- FLOAT PANELS -->
+    <div class="solar-panel panel1"></div>
+    <div class="solar-panel panel2"></div>
+
+    <div class="max-w-6xl mx-auto relative z-10">
+
+      <div class="badge">
+
+        <i data-lucide="zap" class="w-5 h-5 text-amber-400"></i>
+
+        India's Trusted Solar Partner
+
+      </div>
+
+      <h1>
+
+        Save Energy <br>
+
+        <span class="gradient-text">
+          For The Future
+        </span>
+
+      </h1>
+
+      <p class="text-slate-300 text-xl max-w-3xl mx-auto mt-8 leading-relaxed">
+
+        Premium rooftop solar systems engineered for homes,
+        industries and businesses with futuristic renewable technology.
+
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-5 mt-12">
+
+        <a href="#contact"
+          class="bg-gradient-to-r from-amber-400 to-orange-500 text-slate-900 px-10 py-5 rounded-full font-bold text-lg btn shadow-2xl">
+
+          Start Your Solar Journey
+
+        </a>
+
+        <a href="#systems"
+          class="glass px-10 py-5 rounded-full font-semibold text-lg btn">
+
+          Explore Systems
+
+        </a>
+
+      </div>
+
+      <!-- STATS -->
+      <div class="stats">
+
+        <div class="glass stat-card">
+          <h2>500+</h2>
+          <p class="text-slate-300 mt-2">
+            Installations
+          </p>
+        </div>
+
+        <div class="glass stat-card">
+          <h2>90%</h2>
+          <p class="text-slate-300 mt-2">
+            Bill Savings
+          </p>
+        </div>
+
+        <div class="glass stat-card">
+          <h2>24/7</h2>
+          <p class="text-slate-300 mt-2">
+            Customer Support
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- BRANDS -->
+  <section>
+
+    <div class="max-w-7xl mx-auto">
+
+      <h2 class="section-title">
+        Premium Solar Brands
+      </h2>
+
+      <p class="section-sub">
+        Partnered with India's leading solar manufacturers
+      </p>
+
+      <div class="overflow-hidden">
+
+        <div class="marquee">
+
+          <div class="brand glass">
+            <img src="tata.png">
+          </div>
+
+          <div class="brand glass">
+            <img src="adani.png">
+          </div>
+
+          <div class="brand glass">
+            <img src="waaree.png">
+          </div>
+
+          <div class="brand glass">
+            <img src="luminous.png">
+          </div>
+
+          <div class="brand glass">
+            <img src="vikram.png">
+          </div>
+
+          <!-- DUPLICATE -->
+          <div class="brand glass">
+            <img src="tata.png">
+          </div>
+
+          <div class="brand glass">
+            <img src="adani.png">
+          </div>
+
+          <div class="brand glass">
+            <img src="waaree.png">
+          </div>
+
+          <div class="brand glass">
+            <img src="luminous.png">
+          </div>
+
+          <div class="brand glass">
+            <img src="vikram.png">
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SYSTEMS -->
+  <section id="systems">
+
+    <div class="max-w-7xl mx-auto">
+
+      <h2 class="section-title">
+        Smart Solar Systems
+      </h2>
+
+      <p class="section-sub">
+        Designed for every home and business
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-7">
+
+        <div class="glass system-card">
+
+          <div class="w-20 h-20 rounded-3xl bg-amber-400/10 flex items-center justify-center mx-auto mb-6">
+
+            <i data-lucide="battery-charging"
+              class="w-10 h-10 text-amber-400"></i>
+
+          </div>
+
+          <h3 class="text-3xl font-bold mb-3">
+            3 kW
+          </h3>
+
+          <p class="text-slate-300">
+            Perfect for small homes and apartments
+          </p>
+
+        </div>
+
+        <div class="glass system-card border border-amber-400/40">
+
+          <div class="w-20 h-20 rounded-3xl bg-amber-400/10 flex items-center justify-center mx-auto mb-6">
+
+            <i data-lucide="battery-charging"
+              class="w-10 h-10 text-amber-400"></i>
+
+          </div>
+
+          <h3 class="text-3xl font-bold mb-3">
+            4 kW
+          </h3>
+
+          <p class="text-slate-300">
+            Best selling medium family system
+          </p>
+
+        </div>
+
+        <div class="glass system-card">
+
+          <div class="w-20 h-20 rounded-3xl bg-amber-400/10 flex items-center justify-center mx-auto mb-6">
+
+            <i data-lucide="battery-charging"
+              class="w-10 h-10 text-amber-400"></i>
+
+          </div>
+
+          <h3 class="text-3xl font-bold mb-3">
+            5 kW
+          </h3>
+
+          <p class="text-slate-300">
+            High efficiency for large homes
+          </p>
+
+        </div>
+
+        <div class="glass system-card">
+
+          <div class="w-20 h-20 rounded-3xl bg-amber-400/10 flex items-center justify-center mx-auto mb-6">
+
+            <i data-lucide="settings"
+              class="w-10 h-10 text-amber-400"></i>
+
+          </div>
+
+          <h3 class="text-3xl font-bold mb-3">
+            Custom
+          </h3>
+
+          <p class="text-slate-300">
+            Fully customized commercial systems
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+
+    <div class="contact-box glass">
+
+      <h2 class="section-title text-center">
+        Get Free Consultation
+      </h2>
+
+      <p class="section-sub">
+        Our solar experts will contact you shortly
+      </p>
+      <form 
+  id="solarForm"
+  class="space-y-5"
+  action="https://formspree.io/f/mjgzenvv"
+  method="POST">
+
+  <input type="text"
+    name="name"
+    placeholder="Full Name"
+    class="input"
+    required>
+
+  <input type="tel"
+    name="phone"
+    placeholder="Phone Number"
+    class="input"
+    required>
+
+  <input type="text"
+    name="address"
+    placeholder="Address"
+    class="input"
+    required>
+
+<input type="email"
+name="email"
+placeholder="Email Address"
+class="input">
+
+<input type="number"
+name="bill"
+placeholder="Monthly Electricity Bill"
+class="input">
+
+<select id="systemSize"
+name="system"
+class="input">
+
+<option value="3">3 KW</option>
+<option value="4">4 KW</option>
+<option value="5">5 KW</option>
+<option value="10">10 KW</option>
+
+</select>
+
+<input type="text"
+name="panel_brand"
+placeholder="Solar Panel Brand"
+class="input">
+
+<input type="text"
+name="inverter_brand"
+placeholder="Inverter Brand"
+class="input">
+  </select>
+
+  <textarea
+    name="message"
+    placeholder="Your Message"
+    rows="5"
+    class="input"
+    required></textarea>
+
+  <button
+    type="submit"
+    class="w-full bg-gradient-to-r from-amber-400 to-orange-500 text-slate-900 font-bold py-5 rounded-2xl text-lg btn shadow-2xl">
+
+    Submit Enquiry
+
+  </button>
+
+</form>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-glow"></div>
+
+    <div class="relative z-10">
+
+      <div class="w-28 h-28 rounded-full bg-amber-400/10 flex items-center justify-center mx-auto mb-8 glass">
+
+        <i data-lucide="sun-medium"
+          class="w-14 h-14 text-amber-400"></i>
+
+      </div>
+
+      <h2 class="text-5xl font-black mb-4">
+        GNAGA SOLAR ENERGY
+      </h2>
+
+      <p class="text-slate-400 text-lg mb-4">
+        Smart Renewable Energy Solutions
+      </p>
+
+      <p class="text-amber-400 text-2xl font-bold">
+       DIGAMBAR WAGHMARE - +91 8767870372 / 
+       SHIVAJI  WAGHMARE - +91 9921658385
+      </p>
+
+      <p class="text-slate-400 text-lg mb-4">
+        kathora naka ,Amravati 444604.
+      </p>
+
+      <div class="flex justify-center gap-5 mt-10">
+
+        <a href="#"
+          class="glass px-7 py-4 rounded-full font-medium btn">
+
+          Facebook
+
+        </a>
+
+        <a href="#"
+          class="glass px-7 py-4 rounded-full font-medium btn">
+
+          Instagram
+
+        </a>
+
+        <a href="#"
+          class="glass px-7 py-4 rounded-full font-medium btn">
+
+          WhatsApp
+
+        </a>
+
+      </div>
+
+      <p class="text-slate-600 text-sm mt-14">
+        © 2026 GNAGA SOLAR ENERGY • All Rights Reserved • made by enfraTech
+      </p>
+
+    </div>
+
+  </footer>
+
+  <script>
+
+    lucide.createIcons();
+
+  </script>
+<script>
+
+  lucide.createIcons();
+
+  const themeToggle = document.getElementById("themeToggle");
+  const body = document.body;
+
+  // LOAD SAVED THEME
+  if(localStorage.getItem("theme") === "light"){
+    body.classList.add("light-mode");
+
+    themeToggle.innerHTML =
+    `<i data-lucide="sun" class="w-6 h-6 text-orange-500"></i>`;
+  }
+
+  lucide.createIcons();
+
+  // TOGGLE THEME
+  themeToggle.addEventListener("click", () => {
+
+    body.classList.toggle("light-mode");
+
+    // SAVE THEME
+    if(body.classList.contains("light-mode")){
+
+      localStorage.setItem("theme","light");
+
+      themeToggle.innerHTML =
+      `<i data-lucide="sun" class="w-6 h-6 text-orange-500"></i>`;
+
+    }else{
+
+      localStorage.setItem("theme","dark");
+
+      themeToggle.innerHTML =
+      `<i data-lucide="moon" class="w-6 h-6 text-amber-400"></i>`;
+    }
+
+    lucide.createIcons();
+
+  });
+
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+
+document.getElementById("solarForm")
+.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+const name =
+document.querySelector('[name="name"]').value;
+
+const mobile =
+document.querySelector('[name="phone"]').value;
+
+const email =
+document.querySelector('[name="email"]').value;
+
+const system =
+document.getElementById("systemSize").value;
+
+let price = 0;
+
+if(system == "3"){
+price = 190000;
+}
+else if(system == "4"){
+price = 240000;
+}
+else if(system == "5"){
+price = 290000;
+}
+else{
+price = 490000;
+}
+
+const subsidy = 78000;
+
+const finalPrice = price - subsidy;
+
+const { jsPDF } = window.jspdf;
+
+const doc = new jsPDF();
+
+doc.setFontSize(22);
+doc.text("GNAGA SOLAR ENERGY QUOTATION",20,20);
+
+doc.setFontSize(12);
+
+doc.text("Customer Name: " + name,20,40);
+doc.text("Mobile: " + mobile,20,50);
+doc.text("Email: " + email,20,60);
+
+doc.text("System Size: " + system + " KW",20,80);
+doc.text("System Price: Rs " + price,20,90);
+doc.text("Government Subsidy: Rs " + subsidy,20,100);
+doc.text("Final Price: Rs " + finalPrice,20,110);
+
+doc.save(name + "_Quotation.pdf");
+
+this.submit();
+
+});
+
+</script>
+</body>
+
+</html>
